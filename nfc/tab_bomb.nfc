@@ -1,0 +1,29 @@
+Filetype: Flipper NFC device
+Version: 4
+# NFC TAB BOMB 50+ через GitHub
+
+Device name: TAB_BOMB_GITHUB
+UID: 04 5A 6B 7C 8D 9E F0
+ATQA: 44 00
+SAK: 00
+Device type: NTAG216
+
+# Служебные страницы
+Page 000: 04 5A 6B 7C
+Page 001: 8D 9E F0 48
+Page 002: 00 00 00 00
+Page 003: 00 00 00 00
+
+# NDEF запись с URL на GitHub
+# ВАЖНО: ЗАМЕНИ "ТВОЙ-ЛОГИН" на свой логин с GitHub!
+Page 004: 03 25 D1 01
+Page 005: 21 55 03 68
+Page 006: 74 74 70 73
+Page 007: 3A 2F 2F 54
+Page 008: 92 99 A1 2E  # Здесь будет твой логин в HEX
+# ВНИМАНИЕ: Напиши мне свой логин - я сделаю правильный HEX код!
+# Или мы сделаем это позже через конвертер
+Page 016: FE 00 00 00
+
+# Остальные страницы пустые
+Page 017: 00 00 00 00
